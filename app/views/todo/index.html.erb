@@ -1,8 +1,21 @@
+<% if @todos.empty?%>
+    <p>No todos found. Add a few below</p>
+<% else %>
+    <div class="todos">
+        <div id="todo-list">
+        <% @todos.each do |todo| %>
+            <div id=todo><%= todo.title %></div>
+        <% end %>
+        </div>  
+    </div>
+<% end %>
 
-
-
-<ul id="todo-list">
-  <% @todos.each do |todo| %>
-    <li><%= todo.title %></li>
-  <% end %>
-</ul>   
+<%= form_with model: @todo, url: '/', method: :post do |form| %>
+    <div class="field">
+        <%= form.text_field :title, placeholder: "add a todo" %>
+        <%= form.hidden_field :completed, value: false%>
+    </div>
+    <div class="actions">
+        <%= form.submit "Add Todo" %>
+    </div>
+<% end %>
