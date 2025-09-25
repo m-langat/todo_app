@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   root 'todo#index'
   get '/', to: 'todo#index'
   post '/', to: 'todo#create'
+  delete '/:id', to: 'todo#destroy', as: 'delete_todo'
 end
